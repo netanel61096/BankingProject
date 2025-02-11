@@ -25,36 +25,36 @@ namespace BankingAppliction.Services
 
             if (transaction.ActionType != "deposit" && transaction.ActionType != "withdrawal")
             {
-                return new TransactionResult(false, "❌ סוג הפעולה אינו תקין. יש לבחור בין 'deposit' או 'withdrawal'.");
+                return new TransactionResult(false, " סוג הפעולה אינו תקין. יש לבחור בין 'deposit' או 'withdrawal'.");
             }
 
-            if (!Regex.IsMatch(transaction.UserId, @"^\d{9}$")) // בדיוק 9 ספרות
+            if (!Regex.IsMatch(transaction.UserId, @"^\d{9}$")) 
             {
-                return new TransactionResult(false, "❌ מספר תעודת זהות חייב להכיל בדיוק 9 ספרות וללא תווים מיוחדים.");
+                return new TransactionResult(false, " מספר תעודת זהות חייב להכיל בדיוק 9 ספרות וללא תווים מיוחדים.");
             }
 
-            if (  transaction.Amount <= 0 || !Regex.IsMatch(transaction.Amount.ToString(), @"^\d{1,10}$")) // בדיקה שסכום תקין
+            if (  transaction.Amount <= 0 || !Regex.IsMatch(transaction.Amount.ToString(), @"^\d{1,10}$")) 
             {
-                return new TransactionResult(false, "❌  סכום חייב להיות מספר חוקי וחיובי בלבד ועד 10 ספרות.");
+                return new TransactionResult(false, "  סכום חייב להיות מספר חוקי וחיובי בלבד ועד 10 ספרות.");
             }
 
             if (!Regex.IsMatch(transaction.BankAccount, @"^\d{1,10}$")) 
             {
-                return new TransactionResult(false, "❌ מספר חשבון בנק חייב להכיל עד 10 ספרות וללא תווים מיוחדים.");
+                return new TransactionResult(false, " מספר חשבון בנק חייב להכיל עד 10 ספרות וללא תווים מיוחדים.");
             }
             if (!Regex.IsMatch(transaction.FullNameHebrew, @"^[א-ת\s'\-]{1,20}$")) 
             {
-                return new TransactionResult(false, "❌ השם בעברית חייב להכיל רק אותיות בעברית, עד 20 תווים ומותר להשתמש בגרש (-) ורווח.");
+                return new TransactionResult(false, " השם בעברית חייב להכיל רק אותיות בעברית, עד 20 תווים .");
             }
 
             if (!Regex.IsMatch(transaction.FullNameEnglish, @"^[A-Za-z\s'\-]{1,20}$")) 
             {
-                return new TransactionResult(false, "❌ השם באנגלית חייב להכיל רק אותיות באנגלית, עד 20 תווים ומותר להשתמש בגרש (-) ורווח.");
+                return new TransactionResult(false, " השם באנגלית חייב להכיל רק אותיות באנגלית, עד 20 תווים .");
             }
 
             if (!DateTime.TryParseExact(transaction.DateOfBirth.ToString("yyyy-MM-dd"), "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
             {
-                return new TransactionResult(false, "❌ תאריך הלידה חייב להיות בפורמט YYYY-MM-DD.");
+                return new TransactionResult(false, " תאריך הלידה חייב להיות בפורמט YYYY-MM-DD.");
             }
             try
             {
@@ -62,19 +62,18 @@ namespace BankingAppliction.Services
 
                 if (!tokenResponse.IsSuccessStatusCode)
                 {
-                    return new TransactionResult(false, "❌ שגיאה בקבלת טוקן מהספק החיצוני.");
+                    return new TransactionResult(false, " שגיאה בקבלת טוקן מהספק החיצוני.");
                 }
 
                 var tokenResult = await tokenResponse.Content.ReadFromJsonAsync<TokenResponse>();
 
                 if (tokenResult == null || tokenResult.Code != "SUCCESS")
                 {
-                    return new TransactionResult(false, "❌ הטוקן שהתקבל אינו תקף.");
+                    return new TransactionResult(false, " הטוקן שהתקבל אינו תקף.");
                 }
 
-                Console.WriteLine($"✅ קיבלנו טוקן: {tokenResult.Data}");
+                Console.WriteLine($"קיבלנו טוקן: {tokenResult.Data}");
 
-                // בחירת URL לפי סוג הפעולה
                 string actionUrl = transaction.ActionType == "deposit"
                     ? "https://localhost:44393/api/externalBanking/createdeposit"
                     : "https://localhost:44393/api/externalBanking/createWithdrawal";
@@ -85,7 +84,7 @@ namespace BankingAppliction.Services
                 {
                     transaction.Status = "Failed";
                     await _transactionRepository.AddTransactionAsync(transaction);
-                    return new TransactionResult(false, "❌ הפעולה נכשלה - קיבלנו תגובת שגיאה מהספק החיצוני.");
+                    return new TransactionResult(false, " הפעולה נכשלה - קיבלנו תגובת שגיאה מהספק החיצוני.");
                 }
 
                 var result = await response.Content.ReadFromJsonAsync<TokenResponse>();
@@ -94,14 +93,14 @@ namespace BankingAppliction.Services
                 await _transactionRepository.AddTransactionAsync(transaction);
                 return transaction.Status == "Success"
                     ? new TransactionResult(true, null)
-                    : new TransactionResult(false, "❌ הפעולה נכשלה אצל הספק החיצוני.");
+                    : new TransactionResult(false, "הפעולה נכשלה אצל הספק החיצוני.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ שגיאה כללית בביצוע הפעולה: {ex.Message}");
+                Console.WriteLine($" שגיאה כללית בביצוע הפעולה: {ex.Message}");
                 transaction.Status = "Failed";
                 await _transactionRepository.AddTransactionAsync(transaction);
-                return new TransactionResult(false, $"❌ שגיאה כללית: {ex.Message}");
+                return new TransactionResult(false, $" שגיאה כללית: {ex.Message}");
             }
         }
 
@@ -111,39 +110,33 @@ namespace BankingAppliction.Services
             {
                 var transaction = await _transactionRepository.GetTransactionByIdAsync(transactionId);
                 if (transaction == null)
-                    return new TransactionResult(false, "❌ הפעולה לא נמצאה.");
+                    return new TransactionResult(false, " הפעולה לא נמצאה.");
 
-                // ולידציה לסכום
                 if (!Regex.IsMatch(newAmount.ToString(), @"^\d{1,10}$") || newAmount <= 0)
-                    return new TransactionResult(false, "❌ סכום חייב להיות מספר חוקי, עד 10 ספרות וללא תווים מיוחדים.");
+                    return new TransactionResult(false, " סכום חייב להיות מספר חוקי, עד 10 ספרות וללא תווים מיוחדים.");
 
-                // ולידציה לחשבון בנק
                 if (!Regex.IsMatch(newBankAccount, @"^\d{1,10}$"))
-                    return new TransactionResult(false, "❌ מספר חשבון בנק חייב להכיל עד 10 ספרות וללא תווים מיוחדים.");
+                    return new TransactionResult(false, " מספר חשבון בנק חייב להכיל עד 10 ספרות וללא תווים מיוחדים.");
 
-                // בדיקה אם הנתונים החדשים זהים לנתונים הישנים
                 if (transaction.Amount == newAmount && transaction.BankAccount == newBankAccount)
-                    return new TransactionResult(false, "❌ לא התבצע שינוי. יש להזין ערכים חדשים השונים מהקיימים.");
+                    return new TransactionResult(false, " לא התבצע שינוי. יש להזין ערכים חדשים השונים מהקיימים.");
 
-                // עדכון הנתונים
                 transaction.Amount = newAmount;
                 transaction.BankAccount = newBankAccount;
 
                 var updateSuccess = await _transactionRepository.UpdateTransactionAsync(transaction);
                 if (!updateSuccess)
-                    return new TransactionResult(false, "❌ שגיאה בעת שמירת הנתונים במסד הנתונים.");
+                    return new TransactionResult(false, " שגיאה בעת שמירת הנתונים במסד הנתונים.");
 
-                return new TransactionResult(true, "✅ הפעולה עודכנה בהצלחה.");
+                return new TransactionResult(true, " הפעולה עודכנה בהצלחה.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ שגיאה כללית בעדכון פעולה {transactionId}: {ex.Message}");
-                return new TransactionResult(false, $"❌ שגיאה בלתי צפויה: {ex.Message}");
+                Console.WriteLine($" שגיאה כללית בעדכון פעולה {transactionId}: {ex.Message}");
+                return new TransactionResult(false, $" שגיאה בלתי צפויה: {ex.Message}");
             }
         }
 
-
-        // מחיקת פעולה
         public async Task<bool> DeleteTransactionAsync(int transactionId)
         {
             return await _transactionRepository.DeleteTransactionAsync(transactionId);

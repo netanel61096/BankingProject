@@ -17,7 +17,7 @@ namespace BankingAppliction.Repositories
 
         {
             Console.WriteLine(TimeZoneInfo.FindSystemTimeZoneById("Israel Standard Time"));
-            transaction.CreatedAt = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("Israel Standard Time")); // שמירה מראש בזמן ישראל
+            transaction.CreatedAt = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("Israel Standard Time")); 
             _dbContext.Transactions.Add(transaction);
             await _dbContext.SaveChangesAsync();
         }
