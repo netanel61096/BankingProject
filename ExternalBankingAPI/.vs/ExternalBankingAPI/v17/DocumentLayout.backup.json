@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\NATI1\\source\\repos\\ExternalBankingAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9E5F7AF0-B60C-4877-A9CE-65B37F478A07}|ExternalBankingAPI.csproj|c:\\users\\nati1\\source\\repos\\externalbankingapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E5F7AF0-B60C-4877-A9CE-65B37F478A07}|ExternalBankingAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E5F7AF0-B60C-4877-A9CE-65B37F478A07}|ExternalBankingAPI.csproj|c:\\users\\nati1\\source\\repos\\externalbankingapi\\controllers\\externalbankingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E5F7AF0-B60C-4877-A9CE-65B37F478A07}|ExternalBankingAPI.csproj|solutionrelative:controllers\\externalbankingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E5F7AF0-B60C-4877-A9CE-65B37F478A07}|ExternalBankingAPI.csproj|c:\\users\\nati1\\source\\repos\\externalbankingapi\\models\\tokenrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E5F7AF0-B60C-4877-A9CE-65B37F478A07}|ExternalBankingAPI.csproj|solutionrelative:models\\tokenrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E5F7AF0-B60C-4877-A9CE-65B37F478A07}|ExternalBankingAPI.csproj|c:\\users\\nati1\\source\\repos\\externalbankingapi\\models\\transactionrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E5F7AF0-B60C-4877-A9CE-65B37F478A07}|ExternalBankingAPI.csproj|solutionrelative:models\\transactionrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\NATI1\\source\\repos\\ExternalBankingAPI\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\NATI1\\source\\repos\\ExternalBankingAPI\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T20:55:46.079Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TokenRequest.cs",
+              "DocumentMoniker": "C:\\Users\\NATI1\\source\\repos\\ExternalBankingAPI\\Models\\TokenRequest.cs",
+              "RelativeDocumentMoniker": "Models\\TokenRequest.cs",
+              "ToolTip": "C:\\Users\\NATI1\\source\\repos\\ExternalBankingAPI\\Models\\TokenRequest.cs",
+              "RelativeToolTip": "Models\\TokenRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T20:57:34.114Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ExternalBankingController.cs",
+              "DocumentMoniker": "C:\\Users\\NATI1\\source\\repos\\ExternalBankingAPI\\Controllers\\ExternalBankingController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ExternalBankingController.cs",
+              "ToolTip": "C:\\Users\\NATI1\\source\\repos\\ExternalBankingAPI\\Controllers\\ExternalBankingController.cs",
+              "RelativeToolTip": "Controllers\\ExternalBankingController.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAzwBIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T20:54:13.331Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TransactionRequest.cs",
+              "DocumentMoniker": "C:\\Users\\NATI1\\source\\repos\\ExternalBankingAPI\\Models\\TransactionRequest.cs",
+              "RelativeDocumentMoniker": "Models\\TransactionRequest.cs",
+              "ToolTip": "C:\\Users\\NATI1\\source\\repos\\ExternalBankingAPI\\Models\\TransactionRequest.cs",
+              "RelativeToolTip": "Models\\TransactionRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T20:53:22.236Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

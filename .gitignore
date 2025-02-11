@@ -1,0 +1,20 @@
+# Ignore Node.js dependencies
+Client/node_modules/
+Client/build/
+Client/dist/
+Client/.env
+
+# Ignore .NET build files
+**/bin/
+**/obj/
+**/*.user
+**/*.suo
+**/*.vsp
+**/*.mdf
+**/*.ldf
+**/appsettings.json
+**/appsettings.Development.json
+
+# Ignore system files
+.DS_Store
+Thumbs.db
