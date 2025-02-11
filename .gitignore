@@ -11,7 +11,6 @@ Client/.env
 **/*.vsp
 **/*.mdf
 **/*.ldf
-**/appsettings.json
 **/appsettings.Development.json
 
 .DS_Store
