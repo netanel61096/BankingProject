@@ -34,7 +34,6 @@ export const updateTransaction = async (transactionId, newAmount, newBankAccount
     return response.json();
   };
   
-  // שליחת בקשת מחיקה
   export const deleteTransaction = async (transactionId) => {
     const response = await fetch(`${API_URL}/delete/${transactionId}`, {
       method: "DELETE",

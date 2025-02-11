@@ -1,42 +1,69 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ExternalBankingAPI.Models;
-
+using System;
 
 [ApiController]
 [Route("api/externalBanking")]
 public class ExternalBankingController : ControllerBase
 {
-    // קריאה לקבלת טוקן
+
     [HttpPost("createtoken")]
     public IActionResult CreateToken([FromBody] TokenRequest request)
     {
-        if (request.UserId.Length == 9)
+        try
         {
-            return Ok(new { code = "SUCCESS", data = Guid.NewGuid().ToString() });
+            if (request.UserId.Length == 9)
+            {
+                return Ok(new { code = "SUCCESS", data = Guid.NewGuid().ToString() });
+            }
+            return BadRequest(new { code = "ERROR", message = "❌ Invalid UserId. UserId must be 9 digits." });
         }
-        return BadRequest(new { code = "ERROR", message = "Invalid UserId" });
+        catch (Exception ex)
+        {
+            Console.WriteLine($"❌ Error in CreateToken: {ex.Message}");
+            return StatusCode(500, new { code = "ERROR", message = "❌ Internal Server Error", error = ex.Message });
+        }
     }
 
-    // קריאה לביצוע הפקדה
+
     [HttpPost("createdeposit")]
     public IActionResult CreateDeposit([FromBody] TransactionRequest request)
     {
-        if (request.Amount > 0 && request.BankAccount.Length <= 10)
+        try
         {
-            return Ok(new { code = "SUCCESS", data = "Deposit Approved" });
+            if (request.Amount <= 0)
+                return BadRequest(new { code = "ERROR", message = "❌ Amount must be greater than zero." });
+
+            if (request.BankAccount.Length > 10)
+                return BadRequest(new { code = "ERROR", message = "❌ BankAccount must be up to 10 digits." });
+
+            return Ok(new { code = "SUCCESS", data = "✅ Deposit Approved" });
         }
-        return BadRequest(new { code = "ERROR", message = "Invalid deposit details" });
+        catch (Exception ex)
+        {
+            Console.WriteLine($"❌ Error in CreateDeposit: {ex.Message}");
+            return StatusCode(500, new { code = "ERROR", message = "❌ Internal Server Error", error = ex.Message });
+        }
     }
 
-    // קריאה לביצוע משיכה
+
     [HttpPost("createWithdrawal")]
     public IActionResult CreateWithdrawal([FromBody] TransactionRequest request)
     {
-        if (request.Amount > 0 && request.BankAccount.Length <= 10)
+        try
         {
-            return Ok(new { code = "SUCCESS", data = "Withdrawal Approved" });
+            if (request.Amount <= 0)
+                return BadRequest(new { code = "ERROR", message = "❌ Amount must be greater than zero." });
+
+            if (request.BankAccount.Length > 10)
+                return BadRequest(new { code = "ERROR", message = "❌ BankAccount must be up to 10 digits." });
+
+            return Ok(new { code = "SUCCESS", data = "✅ Withdrawal Approved" });
         }
-        return BadRequest(new { code = "ERROR", message = "Invalid withdrawal details" });
+        catch (Exception ex)
+        {
+            Console.WriteLine($"❌ Error in CreateWithdrawal: {ex.Message}");
+            return StatusCode(500, new { code = "ERROR", message = "❌ Internal Server Error", error = ex.Message });
+        }
     }
 }
-

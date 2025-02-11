@@ -17,21 +17,18 @@ const TransactionHistory = ({ userId }) => {
     }
   }, [userId]);
 
-  // התחלת עריכה
   const startEditing = (transaction) => {
     setEditingTransaction(transaction.id);
     setNewAmount(transaction.amount);
     setNewBankAccount(transaction.bankAccount);
   };
 
-  // ביטול עריכה
   const cancelEditing = () => {
     setEditingTransaction(null);
     setNewAmount("");
     setNewBankAccount("");
   };
 
-  // שמירת העריכה
   const saveEdit = async (transactionId) => {
     try {
       const response = await updateTransaction(transactionId, newAmount, newBankAccount);
@@ -48,7 +45,6 @@ const TransactionHistory = ({ userId }) => {
     }
   };
 
-  // מחיקת פעולה
   const handleDeleteTransaction = async (transactionId) => {
     try {
       await deleteTransaction(transactionId);

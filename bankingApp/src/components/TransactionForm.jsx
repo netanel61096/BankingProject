@@ -26,41 +26,37 @@ const TransactionForm = ({ onTransactionSuccess }) => {
       <h2>בצע פעולה</h2>
       {message && <p className={styles.message}>{message}</p>}
       <form onSubmit={handleSubmit(onSubmit)}>
-        
-        {/* שם בעברית */}
+
         <input 
           {...register("fullNameHebrew", {
-            required: "שם מלא בעברית הוא שדה חובה",
+            required: "שם בעברית הוא שדה חובה",
             pattern: {
               value: /^[א-ת\s'\-]{1,20}$/,
-              message: "שם בעברית חייב להכיל רק אותיות בעברית, עד 20 תווים, ניתן להשתמש בגרש (-) ורווח"
+              message: "שם בעברית חייב להכיל רק אותיות בעברית, עד 20 תווים"
             }
           })}
-          placeholder="שם מלא בעברית"
+          placeholder="שם בעברית"
         />
         {errors.fullNameHebrew && <span>{errors.fullNameHebrew.message}</span>}
 
-        {/* שם באנגלית */}
         <input 
           {...register("fullNameEnglish", {
-            required: "שם מלא באנגלית הוא שדה חובה",
+            required: "שם באנגלית הוא שדה חובה",
             pattern: {
               value: /^[A-Za-z\s'\-]{1,20}$/,
-              message: "שם באנגלית חייב להכיל רק אותיות באנגלית, עד 20 תווים, ניתן להשתמש בגרש (-) ורווח"
+              message: "שם באנגלית חייב להכיל רק אותיות באנגלית, עד 20 תווים"
             }
           })}
-          placeholder="שם מלא באנגלית"
+          placeholder="שם באנגלית"
         />
         {errors.fullNameEnglish && <span>{errors.fullNameEnglish.message}</span>}
 
-        {/* תאריך לידה */}
         <input 
           type="date" 
           {...register("dateOfBirth", { required: "תאריך לידה הוא שדה חובה" })} 
         />
         {errors.dateOfBirth && <span>{errors.dateOfBirth.message}</span>}
 
-        {/* תעודת זהות */}
         <input {...register("userId", { 
           required: "תעודת זהות היא חובה",
           pattern: { value: /^\d{9}$/, message: "תעודת זהות חייבת להכיל 9 ספרות בלבד" }
@@ -69,7 +65,6 @@ const TransactionForm = ({ onTransactionSuccess }) => {
         />
         {errors.userId && <span>{errors.userId.message}</span>}
 
-        {/* סוג פעולה */}
         <select {...register("actionType", { required: "יש לבחור פעולה" })}>
           <option value="">בחר פעולה</option>
           <option value="deposit">הפקדה</option>
@@ -77,7 +72,6 @@ const TransactionForm = ({ onTransactionSuccess }) => {
         </select>
         {errors.actionType && <span>{errors.actionType.message}</span>}
 
-        {/* סכום */}
         <input {...register("amount", { 
           required: "יש להזין סכום", 
           pattern: { value: /^\d{1,10}$/, message: "סכום חייב להיות מספר חוקי, עד 10 ספרות וללא תווים מיוחדים" }
@@ -86,7 +80,6 @@ const TransactionForm = ({ onTransactionSuccess }) => {
         />
         {errors.amount && <span>{errors.amount.message}</span>}
 
-        {/* מספר חשבון */}
         <input {...register("bankAccount", { 
           required: "יש להזין מספר חשבון", 
           pattern: { value: /^\d{1,10}$/, message: "מספר חשבון חייב להכיל עד 10 ספרות וללא תווים מיוחדים" }
