@@ -49,14 +49,14 @@ namespace BankingAppliction.Controllers
             {
                 var result = await _transactionService.UpdateTransactionAsync(transactionId, request.NewAmount, request.NewBankAccount);
                 if (!result.Success)
-                    return BadRequest(new { message = result.ErrorMessage }); // החזרת הודעת השגיאה המדויקת
+                    return BadRequest(new { message = result.ErrorMessage }); 
 
                 return Ok(new { message = result.ErrorMessage });
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ שגיאה כללית בעדכון פעולה {transactionId}: {ex.Message}");
-                return StatusCode(500, new { message = "❌ שגיאה בעת עדכון הפעולה", error = ex.Message });
+                Console.WriteLine($" שגיאה כללית בעדכון פעולה {transactionId}: {ex.Message}");
+                return StatusCode(500, new { message = " שגיאה בעת עדכון הפעולה", error = ex.Message });
             }
         }
         [HttpDelete("delete/{transactionId}")]
@@ -66,9 +66,9 @@ namespace BankingAppliction.Controllers
             {
                 var success = await _transactionService.DeleteTransactionAsync(transactionId);
                 if (!success)
-                    return NotFound(new { message = "❌ הפעולה לא נמצאה" });
+                    return NotFound(new { message = " הפעולה לא נמצאה" });
 
-                return Ok(new { message = "✅ הפעולה נמחקה בהצלחה" });
+                return Ok(new { message = "הפעולה נמחקה בהצלחה" });
             }
             catch (Exception ex)
             {
@@ -76,7 +76,6 @@ namespace BankingAppliction.Controllers
                 return StatusCode(500, new { message = "❌ שגיאה בעת מחיקת הפעולה", error = ex.Message });
             }
         }
-
 
         [HttpGet("history/{userId}")]
         public async Task<IActionResult> GetTransactionHistory(string userId)
@@ -88,7 +87,7 @@ namespace BankingAppliction.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ שגיאה בקבלת היסטוריית פעולות: {ex.Message}");
+                Console.WriteLine($" שגיאה בקבלת היסטוריית פעולות: {ex.Message}");
                 return StatusCode(500, new { message = "An error occurred while retrieving transaction history." });
             }
         }
